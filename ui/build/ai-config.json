@@ -1,0 +1,41 @@
+{
+  "_comment": "Runtime AI configuration. Edit this file after deployment and refresh the page - no rebuild needed. Flow: 1) POST auth.dsp.tokenUrl with the credentials below -> DSP returns response.json containing auth.dsp.tokenPath (issued_token); 2) that token is placed in auth.headerName (X-HSBC-E2E-Trust-Token) and used to call auth.endpoint (qwen3-LLM); 3) the answer is read from choices.message.content. auth.dsp.tokenBody supports nested {{username}} / {{password}} / {{apiKey}} / custom placeholders filled from the UI settings panel. extraHeaders values support {{uuid}} (fresh UUID per request); extraBody is merged into the chat completions payload. proxyAiRequests=true routes both the DSP token request and the LLM chat request through the same-origin proxy {backendBaseUrl}/dsp-token and {backendBaseUrl}/llm, which is REQUIRED because the HSBC gateways do not allow browser CORS. In production, configure your web server (nginx, etc.) to forward these two paths to auth.endpoint and auth.dsp.tokenUrl respectively.",
+  "endpoint": "https://gaip-api.gaipuat.dev.ali.cloud.cn.hsbc/etiv-ssvc-aigateway-ea-chatcompletion-uat-internal-proxy/v1/api/v1/chat/completions",
+  "defaultModel": "qwen3-LLM",
+  "models": ["qwen3-LLM"],
+  "backendBaseUrl": "/ai-backend",
+  "proxyAiRequests": true,
+  "maxToolRounds": 5,
+  "extraHeaders": {
+    "x-correlation-id": "{{uuid}}",
+    "x-usersession-id": "{{uuid}}"
+  },
+  "extraBody": {
+    "max_tokens": 150,
+    "user": "UC0008739"
+  },
+  "auth": {
+    "type": "dsp",
+    "apiKey": "",
+    "headerName": "X-HSBC-E2E-Trust-Token",
+    "headerPrefix": "",
+    "dsp": {
+      "tokenUrl": "https://cmb-ib2b-dsp-pprod-eu.systems.uk.hsbc:8443/dsp/rest-sts/DSP_iB2B/iB2B_tokenTranslator?=&_action=translate",
+      "tokenMethod": "POST",
+      "tokenContentType": "application/json",
+      "tokenHeaders": {},
+      "tokenBody": {
+        "input_token_state": {
+          "token_type": "CREDENTIAL",
+          "username": "{{username}}",
+          "password": "{{password}}"
+        },
+        "output_token_state": {
+          "token_type": "JWT"
+        }
+      },
+      "tokenPath": "issued_token",
+      "expiresInPath": "expires_in"
+    }
+  }
+}
