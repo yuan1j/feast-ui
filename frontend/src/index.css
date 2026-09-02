@@ -1,0 +1,173 @@
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", "system-ui";
+  }
+}
+
+/* HSBC-style background: light gray / dark navy */
+html {
+  background: #f4f4f4;
+}
+
+/* Add dark mode specific styles */
+body.euiTheme--dark html {
+  background: #171b2e;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* ===== FCIS dark sidebar ===== */
+.fcis-sidebar {
+  background-color: #26292f !important;
+  color: #c9ced6;
+}
+
+/* Sidebar label text: light color, no underline */
+.fcis-sidebar .euiSideNavItemButton__label {
+  color: #c9ced6 !important;
+  text-decoration: none !important;
+}
+
+/* Sidebar icons (incl. custom SVG graphics): all red */
+.fcis-sidebar .euiSideNavItemButton .euiIcon,
+.fcis-sidebar .euiSideNavItemButton .euiIcon svg path,
+.fcis-sidebar .euiButtonIcon,
+.fcis-sidebar .euiButtonIcon svg,
+.fcis-sidebar nav .euiIcon,
+.fcis-sidebar nav .euiIcon svg path {
+  color: #db0011 !important;
+  fill: #db0011 !important;
+}
+
+.fcis-sidebar .euiSideNavItemButton:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Selected item: red background + white text + white icon (for readability), no underline */
+.fcis-sidebar .euiSideNavItemButton-isSelected,
+.fcis-sidebar .euiSideNavItemButton-isSelected .euiSideNavItemButton__label {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.fcis-sidebar .euiSideNavItemButton-isSelected .euiIcon,
+.fcis-sidebar .euiSideNavItemButton-isSelected .euiIcon svg path {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+.fcis-sidebar .euiHorizontalRule {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ProjectSelector bold adaptation: white bg + black text in light mode, black bg + white text in dark mode */
+.fcis-sidebar .euiFormControlLayout__childrenWrapper {
+  background: #ffffff !important;
+}
+
+.fcis-sidebar .euiSelect,
+.fcis-sidebar .euiSelect__arrow,
+.fcis-sidebar .euiFormControlLayoutIcons__icon {
+  color: #1a1a1a !important;
+  font-weight: 700 !important;
+}
+
+.fcis-sidebar .euiSelect option {
+  color: #1a1a1a !important;
+  background: #ffffff !important;
+}
+
+body.euiTheme--dark .fcis-sidebar .euiFormControlLayout__childrenWrapper {
+  background: #000000 !important;
+}
+
+body.euiTheme--dark .fcis-sidebar .euiSelect,
+body.euiTheme--dark .fcis-sidebar .euiSelect__arrow,
+body.euiTheme--dark .fcis-sidebar .euiFormControlLayoutIcons__icon {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+body.euiTheme--dark .fcis-sidebar .euiSelect option {
+  color: #ffffff !important;
+  background: #000000 !important;
+}
+
+/* ===== FCIS top white header ===== */
+.fcis-header {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+/* White adaptation for the search box */
+.fcis-header .euiFieldSearch {
+  background-color: #f5f5f7 !important;
+  color: #1a1a1a !important;
+  border-color: #e0e0e0 !important;
+}
+
+.fcis-header .euiFieldSearch::placeholder {
+  color: #9a9a9a !important;
+}
+
+/* Icons inside the header: red */
+.fcis-header .euiFormControlLayoutIcons__icon,
+.fcis-header .euiButtonIcon,
+.fcis-header .euiButtonIcon svg,
+.fcis-header .euiButtonEmpty svg {
+  color: #db0011 !important;
+  fill: #db0011 !important;
+}
+
+/* Text inside the header: dark */
+.fcis-header .euiButtonEmpty__text,
+.fcis-header .euiText {
+  color: #1a1a1a !important;
+}
+
+/* AI chat bubble icon: red bubble, white text (overrides the header-wide red icon rule) */
+.fcis-header .euiButtonEmpty .fcis-ai-bubble path {
+  fill: #db0011 !important;
+}
+
+.fcis-header .euiButtonEmpty .fcis-ai-bubble text {
+  fill: #ffffff !important;
+}
+
+/* AI floating button: white circular base wrapping the bubble, stays white on hover */
+.fcis-ai-float-button {
+  width: 53px !important;
+  height: 53px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.fcis-ai-float-button:hover {
+  background: #ffffff !important;
+}
+
+/* AI input placeholder: smaller font, no wrap, ellipsis on overflow */
+.fcis-ai-input::placeholder {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* AI chat drawer: width transition animation (0.5s configured in the AIChatPanel inline styles) */

@@ -1,0 +1,10 @@
+# secrets / per-environment config - keep out of version control
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
